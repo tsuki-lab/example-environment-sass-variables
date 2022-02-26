@@ -27,5 +27,6 @@ module.exports = {
   'rules': {
     'semi': ['error', 'never'],
     'require-jsdoc': ['off'],
+    'spaced-comment': ['off'],
   },
 }
