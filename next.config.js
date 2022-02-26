@@ -1,5 +1,4 @@
-const path = require('path')
-// eslint-disable-next-line @typescript-eslint/no-var-requires, no-redeclare
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path')
 
 /** @type {import('next').NextConfig} */
