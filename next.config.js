@@ -6,6 +6,7 @@ const nextConfig = {
   reactStrictMode: true,
   sassOptions: {
     includePaths: [path.join(__dirname, 'src/styles')],
+    prependData: `@import "var.${process.env.NODE_ENV}.scss";`,
   },
 }
 
