@@ -1,11 +1,8 @@
 # Sassの変数を環境変数で切り替える
 
 スクラップ - Zenn
-[https://zenn.dev/rabbit/scraps/9449140a9398e5](https://zenn.dev/rabbit/scraps/9449140a9398e5)
 
-:::message
-前提として、既にSassが導入されていること。
-:::
+[https://zenn.dev/rabbit/scraps/9449140a9398e5](https://zenn.dev/rabbit/scraps/9449140a9398e5)
 
 # 環境変数の追加
 環境別環境変数ファイルの作成
