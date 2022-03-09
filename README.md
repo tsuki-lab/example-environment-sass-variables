@@ -4,8 +4,7 @@
 
 [https://zenn.dev/rabbit/scraps/9449140a9398e5](https://zenn.dev/rabbit/scraps/9449140a9398e5)
 
-# 環境変数の追加
-環境別環境変数ファイルの作成
+## 環境別環境変数ファイルの作成
 
 ```scss:src/styles/var.development.scss
 $env: development;
@@ -15,7 +14,7 @@ $env: development;
 $env: production;
 ```
 
-`next.config.js`のsassOptionsに`prependData`を記述
+## `next.config.js`のsassOptionsに`prependData`を記述
 
 ```diff js:next.config.js
   const path = require('path')
@@ -32,7 +31,7 @@ $env: production;
   module.exports = nextConfig
 ```
 
-他ファイルで変数を利用
+## 他ファイルで変数を利用
 
 ```scss:src/styles/globals.scss
 html {
