@@ -1,34 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Sassの変数を環境変数で切り替える
 
-## Getting Started
+スクラップ - Zenn
+[https://zenn.dev/rabbit/scraps/9449140a9398e5](https://zenn.dev/rabbit/scraps/9449140a9398e5)
 
-First, run the development server:
+:::message
+前提として、既にSassが導入されていること。
+:::
 
-```bash
-npm run dev
-# or
-yarn dev
+# 環境変数の追加
+環境別環境変数ファイルの作成
+
+```scss:src/styles/var.development.scss
+$env: development;
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```scss:src/styles/var.production.scss
+$env: production;
+```
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+`next.config.js`のsassOptionsに`prependData`を記述
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+```diff js:next.config.js
+  const path = require('path')
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+  /** @type {import('next').NextConfig} */
+  const nextConfig = {
+    reactStrictMode: true,
+    sassOptions: {
+      includePaths: [path.join(__dirname, 'src/styles')],
++     additionalData: `@use "var.${process.env.NODE_ENV}.scss" as environment;`,
+    },
+  }
 
-## Learn More
+  module.exports = nextConfig
+```
 
-To learn more about Next.js, take a look at the following resources:
+他ファイルで変数を利用
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```scss:src/styles/globals.scss
+html {
+  --env: #{environment.$env};
+}
+```
+`--env: development;` or `--env: production;`
